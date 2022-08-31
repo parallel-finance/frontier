@@ -28,6 +28,7 @@ use sp_runtime::{
 	generic::BlockId,
 	traits::{BlakeTwo256, Block as BlockT, UniqueSaturatedInto},
 };
+use sp_consensus::SyncOracle;
 
 use fc_rpc_core::types::*;
 use fp_rpc::EthereumRuntimeRPCApi;
