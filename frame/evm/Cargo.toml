@@ -75,3 +75,4 @@ runtime-benchmarks = [
 	"pallet-timestamp/runtime-benchmarks",
 ]
 forbid-evm-reentrancy = ["dep:environmental"]
+try-runtime = ["frame-support/try-runtime"]
