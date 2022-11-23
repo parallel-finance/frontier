@@ -22,7 +22,7 @@ use ethereum_types::H256;
 use jsonrpsee::core::RpcResult as Result;
 // Substrate
 use sc_network::NetworkService;
-use sc_network_common::{ExHashT, service::NetworkPeers};
+use sc_network_common::{service::NetworkPeers, ExHashT};
 use sp_api::ProvideRuntimeApi;
 use sp_blockchain::HeaderBackend;
 use sp_runtime::{generic::BlockId, traits::Block as BlockT};

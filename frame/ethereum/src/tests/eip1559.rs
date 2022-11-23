@@ -19,7 +19,10 @@
 
 use super::*;
 use fp_ethereum::ValidatedTransaction;
-use frame_support::{traits::Get, dispatch::{DispatchClass, Weight}};
+use frame_support::{
+	dispatch::{DispatchClass, Weight},
+	traits::Get,
+};
 use pallet_evm::{AddressMapping, GasWeightMapping};
 
 fn eip1559_erc20_creation_unsigned_transaction() -> EIP1559UnsignedTransaction {

@@ -18,8 +18,8 @@
 //! Consensus extension module tests for BABE consensus.
 
 use super::*;
-use frame_support::dispatch::Weight;
 use fp_ethereum::ValidatedTransaction;
+use frame_support::dispatch::Weight;
 use pallet_evm::AddressMapping;
 
 fn legacy_erc20_creation_unsigned_transaction() -> LegacyUnsignedTransaction {

@@ -387,7 +387,9 @@ fn rich_block_build(
 fn empty_block_from(number: U256) -> ethereum::BlockV2 {
 	let ommers = Vec::<ethereum::Header>::new();
 	let receipts = Vec::<ethereum::ReceiptV2>::new();
-	let receipts_root = ethereum::util::ordered_trie_root(receipts.iter().map(|r| rlp::encode(r)));
+	let receipts_root = ethereum::util::ordered_trie_root(
+		receipts.iter().map(ethereum::EnvelopedEncodable::encode),
+	);
 	let logs_bloom = ethereum_types::Bloom::default();
 	let partial_header = ethereum::PartialHeader {
 		parent_hash: H256::default(),

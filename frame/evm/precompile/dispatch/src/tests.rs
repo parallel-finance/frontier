@@ -81,7 +81,8 @@ pub fn new_test_ext() -> sp_io::TestExternalities {
 #[test]
 fn decode_limit_too_high() {
 	new_test_ext().execute_with(|| {
-		let mut nested_call = RuntimeCall::System(frame_system::Call::remark { remark: Vec::new() });
+		let mut nested_call =
+			RuntimeCall::System(frame_system::Call::remark { remark: Vec::new() });
 
 		// More than 8 depth
 		for _ in 0..9 {
@@ -112,7 +113,8 @@ fn decode_limit_too_high() {
 #[test]
 fn decode_limit_ok() {
 	new_test_ext().execute_with(|| {
-		let mut nested_call = RuntimeCall::System(frame_system::Call::remark { remark: Vec::new() });
+		let mut nested_call =
+			RuntimeCall::System(frame_system::Call::remark { remark: Vec::new() });
 
 		for _ in 0..8 {
 			nested_call = RuntimeCall::Utility(pallet_utility::Call::as_derivative {

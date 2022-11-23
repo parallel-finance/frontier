@@ -648,7 +648,8 @@ impl<T: Config> GasWeightMapping for FixedGasWeightMapping<T> {
 			weight = weight.saturating_sub(
 				T::BlockWeights::get()
 					.get(frame_support::dispatch::DispatchClass::Normal)
-					.base_extrinsic.ref_time(),
+					.base_extrinsic
+					.ref_time(),
 			);
 		}
 		Weight::from_ref_time(weight)

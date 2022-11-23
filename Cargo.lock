@@ -1447,6 +1447,7 @@ dependencies = [
  "parking_lot 0.12.1",
  "sc-block-builder",
  "sc-client-db",
+ "smallvec",
  "sp-blockchain",
  "sp-consensus",
  "sp-core",

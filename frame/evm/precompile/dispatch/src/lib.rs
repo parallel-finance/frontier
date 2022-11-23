@@ -32,9 +32,8 @@ use fp_evm::{
 };
 use frame_support::{
 	codec::{Decode, DecodeLimit as _},
-	dispatch::{Dispatchable, GetDispatchInfo, PostDispatchInfo},
+	dispatch::{DispatchClass, Dispatchable, GetDispatchInfo, Pays, PostDispatchInfo},
 	traits::{ConstU32, Get},
-	dispatch::{DispatchClass, Pays},
 };
 use pallet_evm::{AddressMapping, GasWeightMapping};
 
@@ -57,11 +56,9 @@ where
 		let target_gas = handle.gas_limit();
 		let context = handle.context();
 
-		let call =
-			T::RuntimeCall::decode_with_depth_limit(DecodeLimit::get(), &mut &*input).map_err(|_| {
-				PrecompileFailure::Error {
-					exit_status: ExitError::Other("decode failed".into()),
-				}
+		let call = T::RuntimeCall::decode_with_depth_limit(DecodeLimit::get(), &mut &*input)
+			.map_err(|_| PrecompileFailure::Error {
+				exit_status: ExitError::Other("decode failed".into()),
 			})?;
 		let info = call.get_dispatch_info();
 
@@ -73,7 +70,9 @@ where
 		}
 
 		if let Some(gas) = target_gas {
-			let valid_weight = info.weight.any_lte(T::GasWeightMapping::gas_to_weight(gas, false));
+			let valid_weight = info
+				.weight
+				.any_lte(T::GasWeightMapping::gas_to_weight(gas, false));
 			if !valid_weight {
 				return Err(PrecompileFailure::Error {
 					exit_status: ExitError::OutOfGas,
